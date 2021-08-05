@@ -19,18 +19,18 @@ export default function HomePage() {
 
   return (
     <>
-      <h2 className={s.title}>Trending Today</h2>
+      <h1 className={s.title}>Trending Today</h1>
       <ul className={s.filmsList}>
         {trendingMovies.map(({ poster_path, title, id }) => (
           <li key={id} className={s.filmsListItem}>
             <Link
+              className={s.link}
               to={{
                 pathname: `/movies/${id}`,
                 state: {
                   from: location.pathname,
                 },
               }}
-              className={s.link}
             >
               <img
                 className={s.image}
