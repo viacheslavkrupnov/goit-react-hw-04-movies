@@ -12,7 +12,7 @@ axios.defaults.params = {
 const fetchTrendingMovies = async () => {
   try {
     const config = {
-      url: `trending/movie/day`,
+      url: `trending/movie/week`,
     };
 
     const { data } = await axios(config);
