@@ -6,6 +6,7 @@ import s from './Cast.module.css';
 export default function Cast() {
   const { movieId } = useParams();
   const [cast, setCast] = useState(null);
+
   const srcBaseUrl = 'https://image.tmdb.org/t/p/w500';
 
   useEffect(() => {
@@ -22,11 +23,21 @@ export default function Cast() {
           <ul className={s.castList}>
             {cast.map(({ id, profile_path, name, character }) => (
               <li className={s.castListItem} key={id}>
-                <img
-                  className={s.image}
-                  src={`${srcBaseUrl}${profile_path}`}
-                  alt=""
-                />
+                {profile_path ? (
+                  <img
+                    className={s.image}
+                    src={`${srcBaseUrl}${profile_path}`}
+                    alt=""
+                  />
+                ) : (
+                  <img
+                    className={s.image}
+                    src={
+                      'https://dummyimage.com/400x600/cfcfcf/ffffff&text=NO+IMAGE+AVAILABLE'
+                    }
+                    alt=""
+                  />
+                )}
                 <h3>{name}</h3>
                 <span>Charachter: {character}</span>
               </li>
