@@ -28,6 +28,8 @@ export default function MoviesPage() {
   };
 
   useEffect(() => {
+    if (request.length === 0) return;
+
     const renderMoviesByQyery = () => {
       moviesApi.fetchMoviesByQuery(request).then(setMovies);
     };
