@@ -8,14 +8,14 @@ import AppBar from './components/AppBar';
 import Container from './components/Container';
 
 const HomePage = lazy(() =>
-  import('./components/HomePage' /* webpackChunkName: "HomePage" */),
+  import('./components/views/HomePage' /* webpackChunkName: "HomePage" */),
 );
 const MoviesPage = lazy(() =>
-  import('./components/MoviesPage' /* webpackChunkName: "MoviesPage" */),
+  import('./components/views/MoviesPage' /* webpackChunkName: "MoviesPage" */),
 );
 const MovieDetailsPage = lazy(() =>
   import(
-    './components/MovieDetailsPage' /* webpackChunkName: "MovieDetailsPage" */
+    './components/views/MovieDetailsPage' /* webpackChunkName: "MovieDetailsPage" */
   ),
 );
 
@@ -37,6 +37,8 @@ function App() {
           <Route path="/movies/:movieId">
             <MovieDetailsPage />
           </Route>
+
+          <Route component={HomePage} />
         </Switch>
       </Suspense>
 

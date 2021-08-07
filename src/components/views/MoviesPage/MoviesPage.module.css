@@ -1,0 +1,11 @@
+.searchInput {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.searchButton {
+  padding: 5px 10px;
+  font-size: 18px;
+}
