@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react';
-import { NavLink, useRouteMatch, useLocation } from 'react-router-dom';
+import {
+  NavLink,
+  useRouteMatch,
+  useLocation,
+  useHistory,
+} from 'react-router-dom';
 import moviesApi from '../../../services/moviesApi';
 import s from './MoviesPage.module.css';
 
@@ -10,8 +15,20 @@ export default function MoviesPage() {
   const [movies, setMovies] = useState(null);
   const [query, setQuery] = useState('');
   const { url } = useRouteMatch();
-  const [request, setRequest] = useState('');
   const location = useLocation();
+  const history = useHistory();
+
+  useEffect(() => {
+    if (location.search === '') {
+      return;
+    }
+    const newSearch = new URLSearchParams(location.search).get('query');
+    // setQuery(newSearch);
+    const renderMoviesByQyery = () => {
+      moviesApi.fetchMoviesByQuery(newSearch).then(setMovies);
+    };
+    renderMoviesByQyery();
+  }, [location.search]);
 
   const handleRequestChange = event => {
     setQuery(event.currentTarget.value.toLowerCase());
@@ -23,18 +40,9 @@ export default function MoviesPage() {
     if (query.trim() === '') {
       return toast.info(`Please enter search query`);
     }
-    setRequest(query);
     setQuery('');
+    history.push({ ...location, search: `query=${query}` });
   };
-
-  useEffect(() => {
-    if (request.length === 0) return;
-
-    const renderMoviesByQyery = () => {
-      moviesApi.fetchMoviesByQuery(request).then(setMovies);
-    };
-    renderMoviesByQyery();
-  }, [request]);
 
   return (
     <>
