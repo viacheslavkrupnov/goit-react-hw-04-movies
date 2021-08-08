@@ -27,7 +27,7 @@ export default function HomePage() {
             <Link
               className={s.link}
               to={{
-                pathname: `/${url}movies/${id}`,
+                pathname: `${url}movies/${id}`,
                 state: {
                   from: location,
                 },

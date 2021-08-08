@@ -49,10 +49,7 @@ export default function MovieDetailsPage() {
   };
 
   const goBack = () => {
-    if (location.state && location.state.from) {
-      return history.push(location.state.from);
-    }
-    history.push('/');
+    history.push(location?.state?.from ?? '/');
   };
 
   return (
@@ -85,6 +82,7 @@ export default function MovieDetailsPage() {
               <NavLink
                 to={{
                   pathname: `${url}/cast`,
+                  state: { from: location?.state?.from ?? '/' },
                 }}
                 onClick={makeVisibleCast}
               >
@@ -95,6 +93,7 @@ export default function MovieDetailsPage() {
               <NavLink
                 to={{
                   pathname: `${url}/reviews`,
+                  state: { from: location?.state?.from ?? '/' },
                 }}
                 onClick={makeVisibleReviews}
               >
