@@ -59,11 +59,21 @@ export default function MovieDetailsPage() {
       </button>
       {movie && (
         <>
-          <img
-            className={s.image}
-            src={`${srcBaseUrl}${movie.poster_path}`}
-            alt={movie.title}
-          />
+          {movie.poster_path ? (
+            <img
+              className={s.image}
+              src={`${srcBaseUrl}${movie.poster_path}`}
+              alt={movie.title}
+            />
+          ) : (
+            <img
+              className={s.image}
+              src={
+                'https://dummyimage.com/400x600/cfcfcf/ffffff&text=NO+IMAGE+AVAILABLE'
+              }
+              alt=""
+            />
+          )}
           <h3>
             {movie.title}({movie.release_date.split('-')[0]})
           </h3>
